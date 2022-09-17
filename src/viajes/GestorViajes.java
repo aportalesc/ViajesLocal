@@ -136,6 +136,11 @@ public class GestorViajes {
 	 */
 	private void rellenaDiccionario(JSONArray array) {
 		// POR IMPLEMENTAR
+
+		for(int i = 0; i < array.size(); i++) {
+			Viaje v = new Viaje((JSONObject) array.get(i));
+			mapa.put(v.getCodviaje(), v);
+		}
 	}
 
 

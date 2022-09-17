@@ -57,6 +57,8 @@ public class ViajesLocal {
 			case 0: // Guardar los datos en el fichero y salir del programa
 
 				// POR IMPLEMENTAR
+				gestor.guardaDatos();
+				System.out.println("Los datos se han guardado correctamente");
 
 				break;
 
