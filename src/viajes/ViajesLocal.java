@@ -68,7 +68,10 @@ public class ViajesLocal {
 				System.out.print("Escriba el origen del viaje: ");
 				String org = teclado.nextLine();
 				JSONArray viajes = gestor.consultaViajes(org);
-				System.out.println(viajes.toJSONString());
+				if(viajes.isEmpty())
+					System.out.println("Lo sentimos, no hay ningún viaje con el origen especificado");
+				else
+					System.out.println(viajes.toJSONString());
 
 				break;
 			}
