@@ -56,7 +56,6 @@ public class ViajesLocal {
 			switch (opcion) {
 			case 0: // Guardar los datos en el fichero y salir del programa
 
-				// POR IMPLEMENTAR
 				gestor.guardaDatos();
 				System.out.println("Los datos se han guardado correctamente");
 
@@ -69,7 +68,7 @@ public class ViajesLocal {
 				String org = teclado.nextLine();
 				JSONArray viajes = gestor.consultaViajes(org);
 				if(viajes.isEmpty())
-					System.out.println("Lo sentimos, no hay ningún viaje con el origen especificado");
+					System.out.println("\nLo sentimos, no hay ningún viaje con el origen especificado");
 				else
 					System.out.println(viajes.toJSONString());
 
@@ -78,12 +77,11 @@ public class ViajesLocal {
 
 			case 2: { // Reservar un viaje
 
-				// POR IMPLEMENTAR
 				System.out.print("Introduce el código del viaje a reservar: ");
 				String codviaje = teclado.nextLine();
 				JSONObject reserva = gestor.reservaViaje(codviaje, codcli);
 				if(reserva.isEmpty())
-					System.out.println("Lo sentimos, no quedan plazas en este viaje");
+					System.out.println("Lo sentimos, no se puede reservar este viaje");
 				else
 					System.out.println("El viaje ha sido reservado correctamente");
 
@@ -92,7 +90,6 @@ public class ViajesLocal {
 
 			case 3: { // Anular una reserva
 
-				// POR IMPLEMENTAR
 				System.out.print("Introduce el código del viaje a anular: ");
 				String codviaje = teclado.nextLine();
 				JSONObject anulado = gestor.anulaReserva(codviaje, codcli);
@@ -105,15 +102,31 @@ public class ViajesLocal {
 			}
 
 			case 4: { // Ofertar un viaje
-
-				// POR IMPLEMENTAR
+				System.out.print("Introduce el origen del viaje: ");
+				String origen = teclado.nextLine();
+				System.out.print("Introduce el destino del viaje: ");
+				String destino = teclado.nextLine();
+				System.out.print("Introduce la fecha del viaje: ");
+				String fecha = teclado.nextLine();
+				System.out.print("Introduce el precio de viaje: ");
+				long precio = teclado.nextLong();
+				System.out.print("Introduce el número de plazas del viaje: ");
+				long numplazas = teclado.nextLong();
+				JSONObject json = gestor.ofertaViaje(codcli, origen, destino, fecha, precio, numplazas);
 
 				break;
 			}
 
 			case 5: { // Borrar un viaje ofertado
+				System.out.print("Introduce el código del viaje: ");
+				String codviaje = teclado.nextLine();
+				JSONObject borrado = gestor.borraViaje(codviaje, codcli);
 
-				// POR IMPLEMENTAR
+				if(borrado.isEmpty())
+					System.out.println("Lo sentimos, no se ha podido borrar el viaje.");
+				else
+					System.out.println("El viaje se ha borrado correctamente");
+
 
 				break;
 			}

@@ -55,7 +55,7 @@ public class Viaje implements Serializable {
 	 * @param jsonViaje
 	 */
 	public Viaje(JSONObject jsonViaje) {
-		super(); 									//SIEMPRE EN CONSTRUCTOR
+		super();
 		this.codprop = (String) jsonViaje.get("codprop");
 		this.origen = (String) jsonViaje.get("origen");
 		this.destino = (String) jsonViaje.get("destino");
