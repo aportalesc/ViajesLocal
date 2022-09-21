@@ -174,11 +174,11 @@ public class GestorViajes {
 			return reserva;
 
 		Viaje viaje = mapa.get(codviaje);
-		if (viaje.getCodprop().equals(codcli))	// El propietario no puede reservar su propio viaje
-			return reserva;
 
-		if(viaje.anyadePasajero(codcli))
-			reserva = viaje.toJSON();
+		if (!viaje.finalizado() && !viaje.getCodprop().equals(codcli)) {
+			if (viaje.anyadePasajero(codcli))
+				reserva = viaje.toJSON();
+		}
 
 		return reserva;
 	}
@@ -192,8 +192,12 @@ public class GestorViajes {
 	 */
 	public JSONObject anulaReserva(String codviaje, String codcli) {
 
-		Viaje viaje = mapa.get(codviaje);
 		JSONObject anulado = new JSONObject();
+
+		if(!mapa.containsKey(codviaje))
+			return anulado;
+
+		Viaje viaje = mapa.get(codviaje);
 
 		if(!viaje.finalizado()) {
 			if(viaje.borraPasajero(codcli))
@@ -255,13 +259,18 @@ public class GestorViajes {
 	 * @return	JSONObject del viaje borrado. JSON vacio si no se ha borrado
 	 */
 	public JSONObject borraViaje(String codviaje, String codcli) {
+
+		JSONObject borrado = new JSONObject();
+		if(!mapa.containsKey(codviaje))
+			return borrado;
+
 		Viaje v = mapa.get(codviaje);
-		JSONObject json = new JSONObject();
+
 		if (v.getCodprop().equals(codcli) && !v.finalizado()){
-			json = v.toJSON();
+			borrado = v.toJSON();
 			mapa.remove(codviaje);
 		}
-		return json;
+		return borrado;
 	}
 
 

@@ -63,7 +63,6 @@ public class ViajesLocal {
 
 			case 1: { // Consultar viajes con un origen dado
 
-				// POR IMPLEMENTAR
 				System.out.print("Escriba el origen del viaje: ");
 				String org = teclado.nextLine();
 				JSONArray viajes = gestor.consultaViajes(org);
@@ -81,9 +80,9 @@ public class ViajesLocal {
 				String codviaje = teclado.nextLine();
 				JSONObject reserva = gestor.reservaViaje(codviaje, codcli);
 				if(reserva.isEmpty())
-					System.out.println("Lo sentimos, no se puede reservar este viaje");
+					System.out.println("\nLo sentimos, no se ha podido hacer la reserva");
 				else
-					System.out.println("El viaje ha sido reservado correctamente");
+					System.out.println("\nLa reserva se ha realizado correctamente");
 
 				break;
 			}
@@ -94,9 +93,9 @@ public class ViajesLocal {
 				String codviaje = teclado.nextLine();
 				JSONObject anulado = gestor.anulaReserva(codviaje, codcli);
 				if(anulado.isEmpty())
-					System.out.println("Lo sentimos, no se ha podido anular la reserva");
+					System.out.println("\nLo sentimos, no se ha podido anular la reserva");
 				else
-					System.out.println("La reserva ha sido anulada correctamente");
+					System.out.println("\nLa reserva ha sido anulada correctamente");
 
 				break;
 			}
@@ -123,9 +122,9 @@ public class ViajesLocal {
 				JSONObject borrado = gestor.borraViaje(codviaje, codcli);
 
 				if(borrado.isEmpty())
-					System.out.println("Lo sentimos, no se ha podido borrar el viaje.");
+					System.out.println("\nLo sentimos, no se ha podido borrar el viaje");
 				else
-					System.out.println("El viaje se ha borrado correctamente");
+					System.out.println("\nEl viaje se ha borrado correctamente");
 
 
 				break;
